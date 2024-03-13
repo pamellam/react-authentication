@@ -41,6 +41,11 @@ export async function action({ request }) {
     throw json({ message: 'Could not authenticate.' }, { status: 500 });
   }
 
-  // TODO: manage token
+  // manage token
+  const resData = await response.json();
+  const token = resData.token;
+
+  localStorage.setItem('token', token);
+
   return redirect('/');
 }
